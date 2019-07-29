@@ -1,0 +1,16 @@
+{
+  "name": "node-net",
+  "version": "1.0.0",
+  "description": "a net application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node dist/server.js",
+    "build": ""
+  },
+  "author": "banyq",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^12.6.8"
+  }
+}
