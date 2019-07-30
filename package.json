@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/server.js",
-    "build": "tsc",
-    "dev": "tsc && node dist/server.js"
+    "build": "node script/clear.js && tsc",
+    "dev": "node script/clear.js && tsc && node dist/server.js",
+    "clear": "node script/clear.js"
   },
   "author": "banyq",
   "license": "ISC",

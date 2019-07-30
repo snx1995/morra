@@ -1,6 +1,5 @@
 import {Player} from "./player/Player";
 import {EventHandler, EventCenter} from "./event/Event";
-import { runInThisContext } from "vm";
 
 const VAR = {
     nextID: 0,
@@ -159,6 +158,8 @@ class Game {
         this.p1.emit("gamefinish", `game finished, winner is ${winner}`);
         this.p2.emit("gamefinish", `game finished, winner is ${winner}`);
         this.echoBoth("---end---")
+        this.round = 0;
+        this.state = GameState.waitingBothReady;
     }
 
     echoBoth(msg: any) {

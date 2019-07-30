@@ -8,7 +8,8 @@
     const st = document.querySelector("#st");
     const jd = document.querySelector("#jd");
     const bu = document.querySelector("#bu");
-    const result = document.querySelector(".result");
+    const result = document.querySelector("#result");
+    const back = document.querySelector("#back");
 
     const client = io("ws://dev.bantasy.top:12345");
     client.on("echo", data => {
@@ -22,6 +23,10 @@
             account: account.value,
             password: password.value
         })
+    })
+
+    back.addEventListener("click", event => {
+        left.className = "left ready";
     })
 
     ready.addEventListener("click", () => {
