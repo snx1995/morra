@@ -5,13 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Index</title>
+    <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
-    
+    <div class="container">
+        <div class="left login">
+                <div class="tab login">
+                    <label>
+                        account:
+                        <input type="text" id="account">
+                    </label>
+                    <label>
+                        password:
+                        <input type="text" id="password">
+                    </label>
+                    <button id="login">login</button>
+                </div>
+                <div class="tab ready">
+                    <button id="ready">ready</button>
+                </div>
+                <div class="tab round">
+                        <button id="st">st</button>
+                        <button id="jd">jd</button>
+                        <button id="bu">bu</button>
+                    </div>
+                <div class="tab result">
+                    <span id="result"></span>
+                </div>
+            </div>
+        <ul class="right">
+        </ul>
+    </div>
 <script src="js/socket.io.js"></script>
+<script src="js/index.js"></script>
 <script>
-const client = io("ws://dev.bantasy.top:12345");
-client.on("echo", data => console.log(data));
+
 </script>
 </body>
 </html>

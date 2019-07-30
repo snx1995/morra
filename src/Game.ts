@@ -73,19 +73,10 @@ class Game {
     }
 
     start() {
+        this.p1.emit("gamestart");
+        this.p2.emit("gamestart");
         this.round = 0;
-        this.p1.echo({
-            op: "game start",
-            countDown: 5,
-            role: "p1",
-            round: 0
-        });
-        this.p2.echo({
-            op: "game start",
-            countDown: 5,
-            role: "p2",
-            round: 0
-        });
+        this.echoBoth("round 0 started")
 
         this.state = GameState.waitingBoth;
 
@@ -165,19 +156,9 @@ class Game {
 
     finish(winner: string) {
         this.game.push({winner});
-        this.echoBoth(`game finished, winner is ${winner}`);
-        this.echoState("finish");
-    }
-
-    echoState(state: string) {
-        this.p1.echo({
-            state,
-            record: this.game
-        });
-        this.p2.echo({
-            state,
-            record: this.game
-        })
+        this.p1.emit("gamefinish", `game finished, winner is ${winner}`);
+        this.p2.emit("gamefinish", `game finished, winner is ${winner}`);
+        this.echoBoth("---end---")
     }
 
     echoBoth(msg: any) {
@@ -221,24 +202,15 @@ class GameCenter {
         if (this.nextGame == null) {
             game = new Game(player);
             this.nextGame = game;
-            player.echo({
-                op: "join game",
-                msg: `you have joined game ${game.id}, waiting another player`
-            })
+            player.echo(`you have joined game ${game.id}, waiting another player`)
         }
         else {
             game = this.nextGame;
             this.nextGame.p2Join(player);
             this.gameStore[this.nextGame.id] = this.nextGame;
             this.nextGame = null;
-            game.p1.echo({
-                op: "join game",
-                msg: `${game.p2.account} has joined the game`
-            });
-            game.p2.echo({
-                op: "join game",
-                msg: `you have joined game ${game.id}, playing with ${game.p1.account}`
-            });
+            game.p1.echo(`${game.p2.account} has joined the game`);
+            game.p2.echo(`you have joined game ${game.id}, playing with ${game.p1.account}`);
         }
     }
 }

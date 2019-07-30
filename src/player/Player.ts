@@ -28,11 +28,7 @@ class Player {
         this.eventCenter = new EventCenter();
         client.on("login", (data: LoginData) => {
             if (data.account && data.password) {
-                client.emit("echo", {
-                    op: "login",
-                    msg: "success",
-                    code: 0
-                });
+                client.emit("loginsuccess");
                 this.account = data.account;
                 this.state = PlayerState.LOGINED;
                 this.eventCenter.emit("login", data);
@@ -63,6 +59,10 @@ class Player {
 
     echo(data: any) {
         this.client.emit("echo", data);
+    }
+
+    emit(event: string, data?: any) {
+        this.client.emit(event, data);
     }
 }
 
